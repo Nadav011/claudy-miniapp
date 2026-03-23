@@ -1,20 +1,20 @@
 @import "tailwindcss";
 
 @theme {
-  /* Telegram theme integration — overridden at runtime by bindCssVars() */
-  --color-tg-bg: var(--tg-theme-bg-color, #ffffff);
-  --color-tg-text: var(--tg-theme-text-color, #000000);
-  --color-tg-hint: var(--tg-theme-hint-color, #999999);
-  --color-tg-link: var(--tg-theme-link-color, #2481cc);
-  --color-tg-button: var(--tg-theme-button-color, #2481cc);
+  /* Telegram dark theme fallbacks — overridden by bindCssVars() inside Telegram */
+  --color-tg-bg: var(--tg-theme-bg-color, #0d1117);
+  --color-tg-text: var(--tg-theme-text-color, #e6edf3);
+  --color-tg-hint: var(--tg-theme-hint-color, #7d8590);
+  --color-tg-link: var(--tg-theme-link-color, #58a6ff);
+  --color-tg-button: var(--tg-theme-button-color, #238636);
   --color-tg-button-text: var(--tg-theme-button-text-color, #ffffff);
-  --color-tg-secondary-bg: var(--tg-theme-secondary-bg-color, #f0f0f0);
-  --color-tg-header-bg: var(--tg-theme-header-bg-color, #ffffff);
-  --color-tg-section-bg: var(--tg-theme-section-bg-color, #ffffff);
-  --color-tg-accent: var(--tg-theme-accent-text-color, #2481cc);
-  --color-tg-destructive: var(--tg-theme-destructive-text-color, #e53935);
-  --color-tg-subtitle: var(--tg-theme-subtitle-text-color, #999999);
-  --color-tg-section-header: var(--tg-theme-section-header-text-color, #6d6d72);
+  --color-tg-secondary-bg: var(--tg-theme-secondary-bg-color, #161b22);
+  --color-tg-header-bg: var(--tg-theme-header-bg-color, #010409);
+  --color-tg-section-bg: var(--tg-theme-section-bg-color, #161b22);
+  --color-tg-accent: var(--tg-theme-accent-text-color, #58a6ff);
+  --color-tg-destructive: var(--tg-theme-destructive-text-color, #f85149);
+  --color-tg-subtitle: var(--tg-theme-subtitle-text-color, #7d8590);
+  --color-tg-section-header: var(--tg-theme-section-header-text-color, #7d8590);
 }
 
 html {
@@ -35,4 +35,16 @@ body {
 /* Safe area for bottom TabBar */
 #root {
   padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+}
+
+/* Scrollbar dark theme */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-tg-hint);
+  border-radius: 4px;
 }
