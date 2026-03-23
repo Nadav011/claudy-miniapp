@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+@theme {
+  /* Telegram theme integration — overridden at runtime by bindCssVars() */
+  --color-tg-bg: var(--tg-theme-bg-color, #ffffff);
+  --color-tg-text: var(--tg-theme-text-color, #000000);
+  --color-tg-hint: var(--tg-theme-hint-color, #999999);
+  --color-tg-link: var(--tg-theme-link-color, #2481cc);
+  --color-tg-button: var(--tg-theme-button-color, #2481cc);
+  --color-tg-button-text: var(--tg-theme-button-text-color, #ffffff);
+  --color-tg-secondary-bg: var(--tg-theme-secondary-bg-color, #f0f0f0);
+  --color-tg-header-bg: var(--tg-theme-header-bg-color, #ffffff);
+  --color-tg-section-bg: var(--tg-theme-section-bg-color, #ffffff);
+  --color-tg-accent: var(--tg-theme-accent-text-color, #2481cc);
+  --color-tg-destructive: var(--tg-theme-destructive-text-color, #e53935);
+  --color-tg-subtitle: var(--tg-theme-subtitle-text-color, #999999);
+  --color-tg-section-header: var(--tg-theme-section-header-text-color, #6d6d72);
+}
+
+html {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--color-tg-bg);
+  color: var(--color-tg-text);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+/* Safe area for bottom TabBar */
+#root {
+  padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+}

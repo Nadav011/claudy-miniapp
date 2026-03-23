@@ -1,0 +1,40 @@
+{
+	"name": "claudy-miniapp",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "tsc -b && vite build",
+		"preview": "vite preview",
+		"lint": "biome check .",
+		"lint:fix": "biome check --write .",
+		"typecheck": "tsc -b --noEmit",
+		"format": "biome format --write .",
+		"test": "vitest run"
+	},
+	"dependencies": {
+		"@tanstack/react-query": "^5.95.2",
+		"@telegram-apps/sdk": "^3.11.8",
+		"@telegram-apps/sdk-react": "^3.3.9",
+		"@telegram-apps/telegram-ui": "^2.1.13",
+		"react": "^19.2.4",
+		"react-dom": "^19.2.4",
+		"zod": "^4.3.6"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.4.8",
+		"@tailwindcss/vite": "^4.2.2",
+		"@testing-library/jest-dom": "^6.9.1",
+		"@testing-library/react": "^16.3.2",
+		"@types/node": "^24.12.0",
+		"@types/react": "^19.2.14",
+		"@types/react-dom": "^19.2.3",
+		"@vitejs/plugin-react": "^6.0.1",
+		"jsdom": "^29.0.1",
+		"tailwindcss": "^4.2.2",
+		"typescript": "~5.9.3",
+		"vite": "^8.0.1",
+		"vitest": "^4.1.1"
+	}
+}
