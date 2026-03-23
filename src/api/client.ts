@@ -2,7 +2,7 @@ import { getRawInitData } from "@/lib/telegram";
 
 // In production, API goes through Vercel serverless proxy (same origin, no PNA issues)
 // In dev, Vite proxy handles it
-const API_BASE = import.meta.env.VITE_API_URL || "/api/proxy";
+const API_BASE = import.meta.env.VITE_API_URL || "/api";
 
 interface FetchOptions extends Omit<RequestInit, "body"> {
 	body?: unknown;
