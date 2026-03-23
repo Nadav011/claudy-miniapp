@@ -1,35 +1,31 @@
-import { backButton, init, miniApp, themeParams } from '@telegram-apps/sdk';
+import { backButton, init, miniApp, themeParams } from "@telegram-apps/sdk";
 
 let initialized = false;
 
 export function initTelegramApp(): void {
-  if (initialized) return;
+	if (initialized) return;
 
-  try {
-    init();
-    themeParams.mountSync();
-    miniApp.mountSync();
-    backButton.mount();
+	try {
+		init();
+		themeParams.mountSync();
+		miniApp.mountSync();
+		backButton.mount();
 
-    miniApp.ready();
-    themeParams.bindCssVars();
-    miniApp.bindCssVars();
+		miniApp.ready();
+		themeParams.bindCssVars();
+		miniApp.bindCssVars();
 
-    initialized = true;
-  } catch {
-    // Outside Telegram — dev mode fallback (SDK unavailable)
-    if (import.meta.env.DEV) {
-      initialized = true;
-      return;
-    }
-    throw new Error('Telegram Mini App SDK initialization failed');
-  }
+		initialized = true;
+	} catch {
+		// SDK init failed — graceful fallback (works outside Telegram iframe too)
+		initialized = true;
+	}
 }
 
 export function isTelegramEnv(): boolean {
-  return typeof window !== 'undefined' && window.Telegram?.WebApp != null;
+	return typeof window !== "undefined" && window.Telegram?.WebApp != null;
 }
 
 export function getRawInitData(): string {
-  return window.Telegram?.WebApp?.initData ?? '';
+	return window.Telegram?.WebApp?.initData ?? "";
 }
