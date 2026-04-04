@@ -1,39 +1,36 @@
-import { getRawInitData } from "@/lib/telegram";
+import { getRawInitData } from '@/lib/telegram';
 
 // In production, API goes through Vercel serverless proxy (same origin, no PNA issues)
 // In dev, Vite proxy handles it
-const API_BASE = import.meta.env.VITE_API_URL || "/api";
+const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
-interface FetchOptions extends Omit<RequestInit, "body"> {
-	body?: unknown;
+interface FetchOptions extends Omit<RequestInit, 'body'> {
+  body?: unknown;
 }
 
-export async function apiClient<T>(
-	path: string,
-	options: FetchOptions = {},
-): Promise<T> {
-	const { body, headers: customHeaders, ...rest } = options;
+export async function apiClient<T>(path: string, options: FetchOptions = {}): Promise<T> {
+  const { body, headers: customHeaders, ...rest } = options;
 
-	const headers: Record<string, string> = {
-		"Content-Type": "application/json",
-		...(customHeaders as Record<string, string>),
-	};
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+    ...(customHeaders as Record<string, string>),
+  };
 
-	const initData = getRawInitData();
-	if (initData) {
-		headers["X-Telegram-Init-Data"] = initData;
-	}
+  const initData = getRawInitData();
+  if (initData) {
+    headers['X-Telegram-Init-Data'] = initData;
+  }
 
-	const response = await fetch(`${API_BASE}${path}`, {
-		...rest,
-		headers,
-		body: body ? JSON.stringify(body) : undefined,
-	});
+  const response = await fetch(`${API_BASE}${path}`, {
+    ...rest,
+    headers,
+    body: body ? JSON.stringify(body) : undefined,
+  });
 
-	if (!response.ok) {
-		const errorText = await response.text().catch(() => "Unknown error");
-		throw new Error(`API ${response.status}: ${errorText}`);
-	}
+  if (!response.ok) {
+    const errorText = await response.text().catch(() => 'Unknown error');
+    throw new Error(`API ${response.status}: ${errorText}`);
+  }
 
-	return response.json() as Promise<T>;
+  return response.json() as Promise<T>;
 }
